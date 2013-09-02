@@ -17,9 +17,10 @@ ATTRIBUTES = -Wall -Werror -Wextra
 RM_DIR = /bin/rm
 
 all:
-	gcc $(ATTRIBUTES) -I $(HEADER) -o $(NAME) $(SOURCES)main.c $(SOURCES)tools.c
+	@gcc $(ATTRIBUTES) -I $(HEADER) -o $(NAME) $(SOURCES)main.c \
+	$(SOURCES)tools.c
 
 clean:
-	$(RM_DIR) -f $(NAME)
+	@$(RM_DIR) -f $(NAME)
 
 re: clean all

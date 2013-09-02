@@ -39,10 +39,7 @@ int		ft_open_file(char *file)
 		m_putchar(buff);
 	}
 	if (close(fd) == -1)
-	{
-		m_putstr("close() error");
-		return (1);
-	}
+		exit(EXIT_FAILURE);
 	return (0);
 }
 
