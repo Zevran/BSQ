@@ -15,6 +15,7 @@
 # define MAIN_H
 # include <fcntl.h>
 # include <errno.h>
+# include <stdlib.h>
 
 void	ft_stdout(void);
 int		ft_open_file(char *file);
