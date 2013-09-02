@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   file_desc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: greyrol <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/09/02 11:20:04 by greyrol           #+#    #+#             */
-/*   Updated: 2013/09/02 11:20:06 by greyrol          ###   ########.fr       */
+/*   Created: 2013/09/02 15:43:56 by greyrol           #+#    #+#             */
+/*   Updated: 2013/09/02 15:43:57 by greyrol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "tools.h"
-#include "file_desc.h"
+#ifndef FILE_DESC_H
 
-/*t_map	ft_clean_map(char *map)
-{
+# define FILE_DESC_H
+# include <fcntl.h>
+# include <errno.h>
+# include <stdlib.h>
 
-}
-*/
-int		main(int argc, char **argv)
-{
-	int	i;
+void	ft_stdout(void);
+int		ft_get_file_size(char *file);
+char	*ft_file_to_array(char *file);
+void	print_errno(char *file);
 
-	i = 1;
-	if (argc == 1)
-		ft_stdout();
-	else
-		while (i < argc)
-		{
-			m_putstr(ft_file_to_array(argv[i]));
-			i++;
-		}
-	return (0);
-}
+#endif /* !FILE_DESC_H */

@@ -13,12 +13,14 @@
 #ifndef MAIN_H
 
 # define MAIN_H
-# include <fcntl.h>
-# include <errno.h>
-# include <stdlib.h>
 
-void	ft_stdout(void);
-int		ft_open_file(char *file);
-void	print_errno(char *file);
+typedef struct 	s_map
+{
+	char	*map;
+	char	cset[3];
+	int		stats[3];
+	int		pos;
+	int		size;
+}				t_map;
 
 #endif /* !MAIN_H */
