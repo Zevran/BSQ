@@ -21,7 +21,7 @@ void	ft_impl_map(t_map *map, char *tab, int size)
 	int		mark;
 
 	lines = 0;
-	columns = 0;
+	columns = 1;
 	mark = 0;
 	if (!tab)
 		exit(EXIT_FAILURE);
