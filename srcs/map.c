@@ -14,15 +14,23 @@
 #include "tools.h"
 #include "file_desc.h"
 
-void	ft_check_map(t_map *map, char *tab, int columns, int size)
+void	ft_impl_map(t_map *map, char *tab, int size)
 {
 	int		lines;
+	int		columns;
+	int		mark;
 
 	lines = 0;
+	columns = 0;
+	mark = 0;
 	if (!tab)
 		exit(EXIT_FAILURE);
 	while (*tab != '\0')
-	{
+	{	
+		if (!mark && *tab == '\n')
+			mark = 1;
+		else if (!mark)
+			columns++;
 		if (*tab == '\n')
 			lines++;
 		tab++;

@@ -23,6 +23,6 @@ typedef struct 	s_map
 	int		size;
 }				t_map;
 
-void	ft_check_map(t_map *map, char *tab, int columns, int size);
+void	ft_impl_map(t_map *map, char *tab, int size);
 
 #endif /* !MAP_H */
