@@ -22,3 +22,17 @@ void	m_putstr(char *str)
 	while (*str != '\0')
 		write(1, str++, 1);
 }
+
+char	*ft_strdup(char *dest, char *src)
+{
+	if (!src)
+		return (dest);
+	dest = (char *) malloc(sizeof(src));
+	while(*src != '\0')
+	{
+		*dest = *src;
+		src++;
+	}
+	*dest = '\0';
+	return (dest);
+}

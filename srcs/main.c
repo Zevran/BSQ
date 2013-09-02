@@ -14,11 +14,6 @@
 #include "tools.h"
 #include "file_desc.h"
 
-/*t_map	ft_clean_map(char *map)
-{
-
-}
-*/
 int		main(int argc, char **argv)
 {
 	int	i;
@@ -29,7 +24,7 @@ int		main(int argc, char **argv)
 	else
 		while (i < argc)
 		{
-			m_putstr(ft_file_to_array(argv[i]));
+			printf("%d\n", ft_get_file_size(argv[i]));
 			i++;
 		}
 	return (0);

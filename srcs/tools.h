@@ -14,8 +14,10 @@
 
 # define TOOLS_H
 # include <unistd.h>
+# include <stdlib.h>
 
 void	m_putchar(char c);
 void	m_putstr(char *str);
+char	*ft_strdup(char *dest, char *src);
 
 #endif /* !TOOLS_H */

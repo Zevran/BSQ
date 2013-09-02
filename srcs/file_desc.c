@@ -12,6 +12,7 @@
 
 #include "file_desc.h"
 #include "tools.h"
+#include "main.h"
 
 void	ft_stdout()
 {
@@ -74,6 +75,26 @@ char	*ft_file_to_array(char *file)
 	}
 	*tab = '\0';
 	return (tab);
+}
+
+void	ft_check_map(t_map *map, char *tab)
+{
+	int		x_lines;
+	int		y_columns;
+
+	x_lines = 0;
+	if (!tab)
+		exit(EXIT_FAILURE);
+	while (*tab != '\0')
+	{
+		if (*tab == '\n')
+			x_lines++;
+		tab++;
+	}
+	map->map = ft_strdup(map->map, tab);
+	map->stats[0] = x_lines;
+	map->stats[1] = y_columns;
+	//map.stats[2] = i;
 }
 
 void	print_errno(char *file)
