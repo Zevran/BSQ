@@ -26,10 +26,12 @@ void	ft_stdout()
 int		ft_get_file_size(char *file)
 {
 	int		i;
+	int		skip;
 	int		fd;
 	char	buff;
 
 	i = 0;
+	skip = 0;
 	fd = open(file, O_RDONLY | O_RDWR);
 	if (fd == -1)
 	{
@@ -37,7 +39,12 @@ int		ft_get_file_size(char *file)
 		return (1);
 	}
 	while (read(fd, &buff, 1))
-		i++;
+	{
+		if ((!skip) && buff == '\n')
+			skip = 1;
+		else if (skip)
+			i++;
+	}
 	if (close(fd) == -1)
 		exit(EXIT_FAILURE);
 	return (i);
@@ -59,7 +66,7 @@ char	*ft_file_to_array(char *file)
 	{
 		if ((!skip) && buff == '\n')
 			skip = 1;
-		if (skip)
+		else if (skip)
 		{
 			*tab = buff;
 			tab++;
