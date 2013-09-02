@@ -13,6 +13,7 @@
 #include "main.h"
 #include "tools.h"
 #include "file_desc.h"
+#include "map.h"
 
 int		main(int argc, char **argv)
 {
@@ -24,7 +25,7 @@ int		main(int argc, char **argv)
 	else
 		while (i < argc)
 		{
-			printf("%d\n", ft_get_file_size(argv[i]));
+			ft_get_file_size(argv[i]);
 			i++;
 		}
 	return (0);

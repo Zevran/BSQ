@@ -18,7 +18,7 @@ RM_DIR = /bin/rm
 
 all:
 	@gcc $(ATTRIBUTES) -I $(HEADER) -o $(NAME) $(SOURCES)main.c \
-	$(SOURCES)tools.c $(SOURCES)file_desc.c
+	$(SOURCES)tools.c $(SOURCES)file_desc.c $(SOURCES)map.c
 
 clean:
 	@$(RM_DIR) -f $(NAME)

@@ -1,17 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: greyrol <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/09/02 11:20:13 by greyrol           #+#    #+#             */
-/*   Updated: 2013/09/02 11:20:14 by greyrol          ###   ########.fr       */
+/*   Created: 2013/09/02 17:56:43 by greyrol           #+#    #+#             */
+/*   Updated: 2013/09/02 17:56:44 by greyrol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
+#include "map.h"
+#include "tools.h"
+#include "file_desc.h"
 
-# define MAIN_H
+void	ft_check_map(t_map *map, char *tab, int columns, int size)
+{
+	int		lines;
 
-#endif /* !MAIN_H */
+	lines = 0;
+	if (!tab)
+		exit(EXIT_FAILURE);
+	while (*tab != '\0')
+	{
+		if (*tab == '\n')
+			lines++;
+		tab++;
+	}
+	map->map = tab;
+	map->stats[0] = lines;
+	map->stats[1] = columns;
+	map->stats[2] = size;
+}
