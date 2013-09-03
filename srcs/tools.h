@@ -18,6 +18,5 @@
 
 void	m_putchar(char c);
 void	m_putstr(char *str);
-char	*ft_strdup(char *dest, char *src);
 
 #endif /* !TOOLS_H */
