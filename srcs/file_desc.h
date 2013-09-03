@@ -14,7 +14,6 @@
 
 # define FILE_DESC_H
 # include <fcntl.h>
-# include <errno.h>
 # include <stdlib.h>
 
 void	ft_stdout(void);
