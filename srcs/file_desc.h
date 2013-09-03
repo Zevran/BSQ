@@ -20,6 +20,5 @@
 void	ft_stdout(void);
 int		ft_get_file_size(char *file);
 char	*ft_file_to_array(char *file);
-void	print_errno(char *file);
 
 #endif /* !FILE_DESC_H */

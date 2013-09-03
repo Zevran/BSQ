@@ -35,10 +35,7 @@ int		ft_get_file_size(char *file)
 	skip = 0;
 	fd = open(file, O_RDONLY | O_RDWR);
 	if (fd == -1)
-	{
-		print_errno(file);
-		return (1);
-	}
+		exit(EXIT_FAILURE);
 	while (read(fd, &buff, 1))
 	{
 		if ((!skip) && buff == '\n')
@@ -76,16 +73,3 @@ char	*ft_file_to_array(char *file)
 	*tab = '\0';
 	return (tab);
 }
-
-void	print_errno(char *file)
-{
-	m_putstr("bsq: ");
-	m_putstr(file);
-	if (errno == EACCES)
-		m_putstr(": Permission denied\n");
-	if (errno == ENOENT)
-		m_putstr(": No such file or directory\n");
-	if (errno == EISDIR)
-		m_putstr(": Is a directory\n");
-}
-
