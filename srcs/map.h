@@ -19,10 +19,13 @@ typedef struct 	s_map
 	char	*map;
 	char	cset[3];
 	int		stats[3];
-	int		pos;
-	int		size;
+	int		sq_pos;
+	int		sq_size;
 }				t_map;
 
 void	ft_impl_map(t_map map, char *tab, int size);
+int		check_line(t_map map, int pos, int size);
+int		check_col(t_map map, int pos, int size);
+void	check(t_map map, int pos);
 
 #endif /* !MAP_H */

@@ -48,16 +48,14 @@ int		ft_get_file_size(char *file)
 	return (i);
 }
 
-char	*ft_file_to_array(char *file)
+char	*ft_file_to_array(char *file, int size)
 {
 	int		fd;
-	int		size;
 	int		skip;
 	char	buff;
 	char	*tab;
 
 	skip = 0;
-	size = ft_get_file_size(file);
 	fd = open(file, O_RDONLY);
 	tab = (char *) malloc(sizeof(char) * size);
 	while (read(fd, &buff, 1))
