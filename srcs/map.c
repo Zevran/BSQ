@@ -14,7 +14,7 @@
 #include "tools.h"
 #include "file_desc.h"
 
-void	ft_impl_map(t_map *map, char *tab, int size)
+void	ft_impl_map(t_map map, char *tab, int size)
 {
 	int		lines;
 	int		columns;
@@ -35,8 +35,8 @@ void	ft_impl_map(t_map *map, char *tab, int size)
 			lines++;
 		tab++;
 	}
-	map->map = tab;
-	map->stats[0] = lines;
-	map->stats[1] = columns;
-	map->stats[2] = size;
+	map.map = tab;
+	map.stats[0] = lines;
+	map.stats[1] = columns;
+	map.stats[2] = size;
 }

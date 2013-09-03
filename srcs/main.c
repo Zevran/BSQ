@@ -18,6 +18,7 @@
 int		main(int argc, char **argv)
 {
 	int	i;
+	t_map	*map;
 
 	i = 1;
 	if (argc == 1)
