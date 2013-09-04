@@ -25,7 +25,7 @@ void	ft_stdout()
 	}
 }
 
-void	ft_get_file_size(t_map *map, char *file)
+void	ft_get_file(t_map *map, char *file)
 {
 	int		i;
 	int		skip;
@@ -42,7 +42,11 @@ void	ft_get_file_size(t_map *map, char *file)
 		if ((!skip) && buff == '\n')
 			skip = 1;
 		else if (skip)
+		{
+			map->map[i] = buff;
+			m_realloc(map, i, i + 1);
 			i++;
+		}
 	}
 	if (close(fd) == -1)
 		exit(EXIT_FAILURE);

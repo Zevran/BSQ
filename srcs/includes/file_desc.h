@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 void	ft_stdout(void);
-void	ft_get_file_size(t_map *map, char *file);
+void	ft_get_file(t_map *map, char *file);
 void	ft_file_to_array(t_map *map, char *file);
 
 #endif /* !FILE_DESC_H */

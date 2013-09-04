@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "includes/map.h"
 #include "includes/tools.h"
 
 void	m_putchar(char c)
@@ -23,24 +24,17 @@ void	m_putstr(char *str)
 		write(1, str++, 1);
 }
 
-int	ft_realloc(t_map *map, int oldsize, int newsize)
+void	m_realloc(t_map *map, int oldsize, int newsize)
 {
-	char	*newptr;
+	t_map	*n_map;
 	int		i;
 
-	newptr = malloc(newsize * sizeof(char));
-	if (!newptr)
-	{
-		free(*ptr);
-		return (-1);
-	}
-	i = 0;
+	n_map->map = (char *) malloc(sizeof(char) * newsize);
 	while (i < oldsize)
 	{
-		newptr[i] = (*ptr)[i];
+		n_map->map[i] = map->map[i];
 		i++;
 	}
-	free(*ptr);
-	*ptr = newptr;
-	return (1);
+	free(map->map);
+	map->map = n_map->map;
 }
