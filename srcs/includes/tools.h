@@ -18,6 +18,6 @@
 
 void	m_putchar(char c);
 void	m_putstr(char *str);
-void	m_realloc(void *ptr, int size);
+void	m_realloc(t_map *map, int oldsize, int newsize);
 
 #endif /* !TOOLS_H */

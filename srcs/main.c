@@ -15,6 +15,10 @@
 #include "includes/tools.h"
 #include "includes/file_desc.h"
 
+#include <stdio.h>
+#include <time.h>
+void	print_time(char *function, clock_t start, clock_t end);
+
 void	build_map(char *file);
 void	bsq(t_map *map);
 
@@ -23,8 +27,7 @@ void	build_map(char *file)
 	t_map	map;
 
 	map.cset[0] = '.';
-	map.cset[1] = 'o';
-	map.cset[2] = 'x';
+	map.cset[1] = 'x';
 	map.sq_pos = 0;
 	map.sq_size = 0;
 	ft_get_file_size(&map, file);
@@ -62,12 +65,13 @@ void	bsq(t_map *map)
 		j = 0;
 		i++;
 	}
-	m_putstr(map->map);
+	write(1, map->map, map->stats[2]);
 }
 
 int		main(int argc, char **argv)
 {
 	int	i;
+	clock_t	start, end;
 
 	i = 1;
 	if (argc == 1)
@@ -75,31 +79,11 @@ int		main(int argc, char **argv)
 	else
 		while (i < argc)
 		{
+			start = clock();
 			build_map(argv[i]);
+			end = clock();
+			print_time("bsq", start, end);
 			i++;
 		}
 	return (0);
 }
-/*
-int		main(void)
-{
-	t_map	map;
-
-	map.cset[0] = '.';
-	map.cset[1] = 'o';
-	map.cset[2] = 'x';
-	map.map = (char*)malloc(sizeof(char) * 30);
-	char s[] = ".....\no..o.\n.....\n.o.o.\n..o..\n";
-	int		i = 0;
-	while (i < 30)
-	{
-		map.map[i] = s[i];
-		i++;
-	}
-	map.stats[0] = 6;
-	map.stats[1] = 5;
-	map.stats[2] = 30;
-	bsq(&map);
-	return (0);
-}
-*/

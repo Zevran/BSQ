@@ -22,8 +22,8 @@ void	m_putstr(char *str)
 	while (*str != '\0')
 		write(1, str++, 1);
 }
-/*
-int	ft_realloc(char *tab, int oldsize, int newsize)
+
+int	ft_realloc(t_map *map, int oldsize, int newsize)
 {
 	char	*newptr;
 	int		i;
@@ -43,4 +43,4 @@ int	ft_realloc(char *tab, int oldsize, int newsize)
 	free(*ptr);
 	*ptr = newptr;
 	return (1);
-}*/
+}
