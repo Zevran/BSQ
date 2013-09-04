@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-#include "file_desc.h"
-#include "tools.h"
-#include "main.h"
+#include "includes/map.h"
+#include "includes/file_desc.h"
+#include "includes/tools.h"
+#include "includes/main.h"
 
 void	ft_stdout()
 {

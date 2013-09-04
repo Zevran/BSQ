@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-#include "main.h"
-#include "tools.h"
-#include "file_desc.h"
+#include "includes/map.h"
+#include "includes/main.h"
+#include "includes/tools.h"
+#include "includes/file_desc.h"
 
 void	build_map(char *file);
 void	bsq(t_map *map);

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-#include "file_desc.h"
+#include "includes/map.h"
+#include "includes/file_desc.h"
 
 void	ft_impl_map(t_map *map)
 {

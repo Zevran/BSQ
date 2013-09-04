@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "includes/tools.h"
 
 void	m_putchar(char c)
 {
