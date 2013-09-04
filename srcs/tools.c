@@ -22,3 +22,25 @@ void	m_putstr(char *str)
 	while (*str != '\0')
 		write(1, str++, 1);
 }
+/*
+int	ft_realloc(char *tab, int oldsize, int newsize)
+{
+	char	*newptr;
+	int		i;
+
+	newptr = malloc(newsize * sizeof(char));
+	if (!newptr)
+	{
+		free(*ptr);
+		return (-1);
+	}
+	i = 0;
+	while (i < oldsize)
+	{
+		newptr[i] = (*ptr)[i];
+		i++;
+	}
+	free(*ptr);
+	*ptr = newptr;
+	return (1);
+}*/

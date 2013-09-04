@@ -10,47 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "map.h"
 #include "main.h"
 #include "tools.h"
 #include "file_desc.h"
-#include "map.h"
 
-void	bsq(char *file)
-{
-	t_map	map;
-	char	*tab;
-	int		size;
-	int		pos;
+void	build_map(char *file);
+void	bsq(t_map *map);
 
-	pos = 0;
-	size = ft_get_file_size(file);
-	tab = ft_file_to_array(file, size);
-	ft_impl_map(map, tab, size);
-	while (pos < map.stats[2])
-	{
-		while (map.map[pos] != map.cset[0] && pos < map.stats[3])
-			pos++;
-		check(map, pos);
-	}
-}
-
-/*int		main(void)
+void	build_map(char *file)
 {
 	t_map	map;
 
 	map.cset[0] = '.';
 	map.cset[1] = 'o';
 	map.cset[2] = 'x';
-	map.map = "..ooo\n..ooo\nooooo\nooooo\nooooo\n";
-	map.stats[0] = 6;
-	map.stats[1] = 5;
-	map.stats[2] = 30;
-	map.map[12] = '\0';
-	//printf("%d\n", check_line(&map, 0, 2));
-	//bsq(map);
+	map.sq_pos = 0;
+	map.sq_size = 0;
+	ft_get_file_size(&map, file);
+	ft_file_to_array(&map, file);
+	ft_impl_map(&map);
+	bsq(&map);
+}
 
-	return (0);
-}*/
+void	bsq(t_map *map)
+{
+	int		pos;
+	int		i;
+	int		j;
+
+	pos = 0;
+	i = 0;
+	j = 0;
+	while (pos < map->stats[2])
+	{
+		while (map->map[pos] != map->cset[0] && pos < map->stats[2])
+			pos++;
+		check(map, pos);
+		pos++;
+	}
+	pos = map->sq_pos;
+	while (i < map->sq_size)
+	{
+		while (j < map->sq_size)
+		{
+			map->map[pos] = map->cset[2];
+			pos++;
+			j++;
+		}
+		pos = pos - map->sq_size + map->stats[0] ;
+		j = 0;
+		i++;
+	}
+	m_putstr(map->map);
+}
 
 int		main(int argc, char **argv)
 {
@@ -62,8 +75,31 @@ int		main(int argc, char **argv)
 	else
 		while (i < argc)
 		{
-			bsq(argv[i]);
+			build_map(argv[i]);
 			i++;
 		}
 	return (0);
 }
+/*
+int		main(void)
+{
+	t_map	map;
+
+	map.cset[0] = '.';
+	map.cset[1] = 'o';
+	map.cset[2] = 'x';
+	map.map = (char*)malloc(sizeof(char) * 30);
+	char s[] = ".....\no..o.\n.....\n.o.o.\n..o..\n";
+	int		i = 0;
+	while (i < 30)
+	{
+		map.map[i] = s[i];
+		i++;
+	}
+	map.stats[0] = 6;
+	map.stats[1] = 5;
+	map.stats[2] = 30;
+	bsq(&map);
+	return (0);
+}
+*/

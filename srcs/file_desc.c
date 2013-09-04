@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "map.h"
 #include "file_desc.h"
 #include "tools.h"
 #include "main.h"
@@ -24,7 +25,7 @@ void	ft_stdout()
 	}
 }
 
-int		ft_get_file_size(char *file)
+void	ft_get_file_size(t_map *map, char *file)
 {
 	int		i;
 	int		skip;
@@ -45,29 +46,28 @@ int		ft_get_file_size(char *file)
 	}
 	if (close(fd) == -1)
 		exit(EXIT_FAILURE);
-	return (i);
+	map->stats[2] = i;
 }
 
-char	*ft_file_to_array(char *file, int size)
+void	ft_file_to_array(t_map *map, char *file)
 {
 	int		fd;
+	int		i;
 	int		skip;
 	char	buff;
-	char	*tab;
 
 	skip = 0;
+	i = 0;
 	fd = open(file, O_RDONLY);
-	tab = (char *) malloc(sizeof(char) * size);
+	map->map = (char *) malloc(sizeof(char) * map->stats[2]);
 	while (read(fd, &buff, 1))
 	{
 		if ((!skip) && buff == '\n')
 			skip = 1;
 		else if (skip)
 		{
-			*tab = buff;
-			tab++;
+			map->map[i] = buff;
+			i++;
 		}
 	}
-	*tab = '\0';
-	return (tab);
 }
