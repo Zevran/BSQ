@@ -14,7 +14,7 @@ NAME = bsq
 HEADER = includes
 SOURCES = srcs/
 ATTRIBUTES = -Wall -Werror -Wextra
-DEBUG = -ggdb
+DEBUG = -O3 -ggdb
 RM_DIR = /bin/rm
 
 all:
@@ -22,8 +22,7 @@ all:
 	$(SOURCES)tools.c $(SOURCES)file_desc.c $(SOURCES)map.c $(SOURCES)time.c
 
 debug:
-	@gcc $(ATTRIBUTES) $(DEBUG) -I $(HEADER) -o $(NAME) $(SOURCES)main.c \
-	$(SOURCES)tools.c $(SOURCES)file_desc.c $(SOURCES)map.c $(SOURCES)time.c
+	@clang $(ATTRIBUTES) $(DEBUG) -I $(HEADER) -o $(NAME) $(SOURCES)*.c
 
 clean:
 	@$(RM_DIR) -f $(NAME)
