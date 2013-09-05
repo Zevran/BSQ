@@ -71,33 +71,26 @@ void	ft_get_file(t_map *map, char *file)
 		if ((!skip) && buff == '\n')
 			skip = 1;
 		else if (skip)
-			i++;
+			map->stats[2] = i++;
 	}
 	if (close(fd) == -1)
 		exit(EXIT_FAILURE);
-	map->stats[2] = i;
 }
 
 void	ft_file_to_array(t_map *map, char *file)
 {
 	int		fd;
-	int		i;
 	int		skip;
 	char	buff;
+	char	*tab;
 
 	skip = 0;
-	i = 0;
 	fd = open(file, O_RDONLY);
 	map->map = (char *) malloc(sizeof(char) * map->stats[2]);
-	while (read(fd, &buff, 1))
-	{
-		if ((!skip) && buff == '\n')
-			skip = 1;
-		else if (skip)
-		{
-			map->map[i] = buff;
-			i++;
-		}
-	}
+	tab = (char *) malloc(sizeof(char) * map->stats[2]);
+	while (read(fd, &buff, 1) && buff != '\n')
+		map->stats[0] = skip++;
+	while (read(fd, tab, map->stats[2]))
+		map->map = tab;
 }
 
