@@ -14,8 +14,8 @@ int		main(int argc, char **argv)
 	(void)argv;
 	(void)argc;
 	t_map	map;
-	int		i = 1;
-	printf("%d\n", read_head(&i, &map));
+	read_head(0, &map)
+	printf("%d\n", map.cset[0]);
 }
 
 int		ft_atoi(char *str, int n)
@@ -28,11 +28,11 @@ int		ft_atoi(char *str, int n)
 	str++;
 	while (*str && i < n) 
 	{
-		printf("%c\n", *str);
 		if (*str < '0' || *str > '9')
 			return (-101);
 		res *= 10 + (*str) - '0';
 		str++;
+		i++;
 	}
 	return (i);
 }
@@ -55,13 +55,12 @@ int		read_head(int *fd, t_map *map)
 		i++;
 	}
 	i--;
-	//temp_ok
 	if (i < 3 || err < 0)
 		return (-2);
 	map->cset[2] = temp[i--];
 	map->cset[1] = temp[i--];
 	map->cset[0] = temp[i--];
-	map->stats[0] = ft_atoi(temp, --i);
+	map->stats[0] = ft_atoi(temp, i);
 	if (map->stats[0] < 1)
 		return (-3);
 	return (1);
