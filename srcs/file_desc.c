@@ -25,6 +25,35 @@ void	ft_stdout()
 	}
 }
 
+int		read_head(int *fd, t_map *map)
+{
+	char	buff;
+	char	*temp;
+	char	err;
+	int		i;
+
+	i = 1;
+	if (*fd < 1)
+		return (-1);
+	temp = (char *) malloc(sizeof(char));
+	while ((err = read(*fd, &buff, 1)) > 0 && buff != '\n')
+	{
+		m_reallocstr(temp, i, i + 1);
+		temp[i] = buff;
+		i++;
+	}
+	i--;
+	if (i < 3 || err < 0)
+		return (-2);
+	map->cset[2] = temp[i--];
+	map->cset[1] = temp[i--];
+	map->cset[0] = temp[i--];
+	map->stats[0] = m_atoi(temp, i);
+	if (map->stats[0] < 1)
+		return (-3);
+	return (1);
+}
+
 void	ft_get_file(t_map *map, char *file)
 {
 	int		i;

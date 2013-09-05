@@ -53,3 +53,19 @@ int		m_atoi(char *str, int n)
 	}
 	return (i);
 }
+
+void	m_reallocstr(char *str, int old_size, int new_size)
+{
+	char	*n_str;
+	int		i;
+
+	i = 0;
+	n_str = (char *) malloc(sizeof(char) * new_size);
+	while (i < old_size)
+	{
+		n_str[i] = str[i];
+		i++;
+	}
+	free(str);
+	str = n_str;
+}

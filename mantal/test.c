@@ -47,7 +47,7 @@ int		read_head(int *fd, t_map *map)
 	i = 1;
 	if (*fd < 1)
 		return (-1);
-	temp = (char*)malloc(sizeof(char));
+	temp = (char *) malloc(sizeof(char));
 	while ((err = read(*fd, &buff, 1)) > 0 && buff != '\n')
 	{
 		ft_reallocstr(temp, i, i + 1);
