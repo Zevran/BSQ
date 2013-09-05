@@ -24,18 +24,32 @@ void	m_putstr(char *str)
 		write(1, str++, 1);
 }
 
-void	m_realloc(t_map *map, int oldsize, int newsize)
+void	m_putnbr(int n)
 {
-	char	*n_map;
+	if (n >= 10)
+	{
+		m_putnbr(n / 10);
+		m_putnbr(n % 10);
+	}
+	else
+		m_putchar(48 + n);
+}
+
+int		m_atoi(char *str, int n)
+{
+	int		res;
 	int		i;
 
-	i = 0;
-	n_map = (char *) malloc(sizeof(char) * newsize);
-	while (i < oldsize)
+	i = 1;
+	res = 0;
+	str++;
+	while (*str && i < n) 
 	{
-		n_map[i] = map->map[i];
+		if (*str < '0' || *str > '9')
+			return (-101);
+		res *= 10 + (*str) - '0';
+		str++;
 		i++;
 	}
-	free(map->map);
-	map->map = n_map;
+	return (i);
 }
