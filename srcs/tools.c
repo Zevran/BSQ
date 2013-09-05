@@ -26,15 +26,16 @@ void	m_putstr(char *str)
 
 void	m_realloc(t_map *map, int oldsize, int newsize)
 {
-	t_map	*n_map;
+	char	*n_map;
 	int		i;
 
-	n_map->map = (char *) malloc(sizeof(char) * newsize);
+	i = 0;
+	n_map = (char *) malloc(sizeof(char) * newsize);
 	while (i < oldsize)
 	{
-		n_map->map[i] = map->map[i];
+		n_map[i] = map->map[i];
 		i++;
 	}
 	free(map->map);
-	map->map = n_map->map;
+	map->map = n_map;
 }

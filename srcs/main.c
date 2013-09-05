@@ -27,7 +27,8 @@ void	build_map(char *file)
 	t_map	map;
 
 	map.cset[0] = '.';
-	map.cset[1] = 'x';
+	map.cset[1] = 'o';
+	map.cset[2] = 'x';
 	map.sq_pos = 0;
 	map.sq_size = 0;
 	ft_get_file(&map, file);

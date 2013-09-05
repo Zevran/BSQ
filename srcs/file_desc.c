@@ -43,8 +43,8 @@ void	ft_get_file(t_map *map, char *file)
 			skip = 1;
 		else if (skip)
 		{
-			map->map[i] = buff;
 			m_realloc(map, i, i + 1);
+			map->map[i] = buff;
 			i++;
 		}
 	}
