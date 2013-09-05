@@ -37,6 +37,7 @@ void	ft_get_file(t_map *map, char *file)
 	fd = open(file, O_RDONLY | O_RDWR);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
+	map->map = (char*)malloc(sizeof(char));
 	while (read(fd, &buff, 1))
 	{
 		if ((!skip) && buff == '\n')
