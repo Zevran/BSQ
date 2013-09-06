@@ -31,7 +31,7 @@ void	build_map(char *file)
 		return ;
 	}
 	bsq(&map);
-	//free(map.map);
+	free(map.map);
 }
 
 void	draw_square(t_map *map)
