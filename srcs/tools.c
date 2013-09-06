@@ -18,11 +18,6 @@ void	m_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	map_error(void)
-{
-	write(1, "map error\n", 10);
-}
-
 void	m_putstr(char *str)
 {
 	while (*str != '\0')
