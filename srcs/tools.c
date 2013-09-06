@@ -12,7 +12,7 @@
 
 #include "includes/map.h"
 #include "includes/tools.h"
-#include <stdio.h>
+
 void	m_putchar(char c)
 {
 	write(1, &c, 1);
