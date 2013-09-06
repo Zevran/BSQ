@@ -23,7 +23,6 @@ typedef struct 	s_map
 	int		sq_size;
 }				t_map;
 
-void	ft_impl_map(t_map *map);
 int		check_line(t_map *map, int pos, int size);
 int		check_col(t_map *map, int pos, int size);
 void	check(t_map *map, int pos);

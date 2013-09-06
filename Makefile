@@ -19,12 +19,11 @@ RM_DIR = /bin/rm
 
 all:
 	@gcc $(ATTRIBUTES) -I $(HEADER) -o $(NAME) $(SOURCES)main.c \
-	$(SOURCES)tools.c $(SOURCES)file_desc.c $(SOURCES)map.c $(SOURCES)time.c
+	$(SOURCES)tools.c $(SOURCES)file_desc.c $(SOURCES)map.c
 
-debug:
-	@clang $(ATTRIBUTES) $(DEBUG) -I $(HEADER) -o $(NAME) $(SOURCES)*.c
-
-clean:
+fclean: clean
 	@$(RM_DIR) -f $(NAME)
 
-re: clean all
+clean:
+
+re: fclean all

@@ -13,29 +13,6 @@
 #include "includes/map.h"
 #include "includes/file_desc.h"
 
-void		ft_impl_map(t_map *map)
-{
-	int	lines;
-	int	columns;
-	int	mark;
-	int	i;
-
-	lines = 0;
-	columns = 0;
-	mark = 0;
-	i = 0;
-	while (map->map[i] != '\0')
-	{
-		if (!mark && map->map[i] == '\n')
-			mark = 1;
-		else if (!mark)
-			map->stats[0] = columns++;
-		if (map->map[i] == '\n')
-			map->stats[1] = lines++;
-		i++;
-	}
-}
-
 int		check_line(t_map *map, int pos, int size)
 {
 	int		temp;

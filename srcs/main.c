@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "includes/map.h"
-#include "includes/main.h"
 #include "includes/tools.h"
 #include "includes/file_desc.h"
 

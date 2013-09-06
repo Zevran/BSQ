@@ -13,8 +13,6 @@
 #include "includes/map.h"
 #include "includes/file_desc.h"
 #include "includes/tools.h"
-#include "includes/main.h"
-#include <stdio.h>
 
 int		ft_stdout(char *file_name)
 {
@@ -111,4 +109,3 @@ int		ft_file_to_array(t_map *map, char *file)
 		return (-2);
 	return (1);
 }
-

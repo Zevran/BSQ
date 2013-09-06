@@ -14,7 +14,6 @@
 
 # define TOOLS_H
 # include <unistd.h>
-# include <stdlib.h>
 
 int		m_atoi(char *str, int n);
 
