@@ -15,10 +15,6 @@
 #include "includes/tools.h"
 #include "includes/file_desc.h"
 
-#include <stdio.h>
-#include <time.h>
-void	print_time(char *function, clock_t start, clock_t end);
-
 void	build_map(char *file);
 void	draw_square(t_map *map);
 void	bsq(t_map *map);
@@ -92,18 +88,24 @@ void	bsq(t_map *map)
 int		main(int argc, char **argv)
 {
 	int	i;
-	clock_t	start;
+	char file_name[] = "temp_map";
 
 	i = 1;
 	if (argc == 1)
-		ft_stdout();
+	{
+		if (ft_stdout(file_name) == 1)
+		{
+			write(2, "map error\n", 10);
+			return (0);
+		}
+		else
+			build_map(file_name);
+	}
 	else
 	{
 		while (i < argc)
 		{
-			start = clock();
 			build_map(argv[i]);
-			print_time("bsq", start, clock());
 			i++;
 		}
 	}

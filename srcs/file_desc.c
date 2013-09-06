@@ -15,14 +15,21 @@
 #include "includes/tools.h"
 #include "includes/main.h"
 #include <stdio.h>
-void	ft_stdout()
-{
-	char buff;
 
-	while (read(STDOUT_FILENO, &buff, 1))
-	{
-		m_putchar(buff);
-	}
+int		ft_stdout(char *file_name)
+{
+	int		fd;
+	int		r;
+	char	buff;
+
+	if ((fd = open(file_name, O_RDWR | O_TRUNC | O_CREAT, S_IRUSR | S_IWUSR)) \
+		< 0)
+		return (1);
+	while ((r = read(STDIN_FILENO, &buff, 1)) > 0)
+		write(fd, &buff, r);
+	if (close(fd) < 0)
+		return (2);
+	return (0);
 }
 
 int		read_head(int fd, t_map *map)
@@ -74,18 +81,14 @@ int		ft_get_file_size(t_map *map, char *file)
 		return (-3);
 	if (!(buff = (char*)malloc(sizeof(char) * map->stats[0])))
 		return (-4);
-	while ((err = read(fd, &buff_1, 1)) > 0)
-		map->stats[2]++;
-	map->stats[2] += map->stats[0];
-	/*while (err > 0)
+	while (err > 0)
 	{
 		if ((err = read(fd, buff, map->stats[0])) > 0)
 			map->stats[2] += err;
 		if (err > 0 && err != map->stats[0])
 			err = -1;
-	}*/
-	/*while ((err = read(fd, buff, map->stats[0])) > 0)
-		map->stats[2] += err;*/
+	}
+	map->stats[2] += map->stats[0];
 	if (close(fd) < 0 || err < 0)
 		return (-5);
 	return (1);
