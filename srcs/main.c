@@ -93,8 +93,15 @@ void	bsq(t_map *map)
 	j = 0;
 	while (pos < map->stats[2])
 	{
-		while (map->map[pos] != map->cset[0] && pos < map->stats[3])
+		while (map->map[pos] != map->cset[0] && pos < map->stats[2])
+		{
+			if (map->map[pos] != map->cset[0] && map->map[pos] != map->cset[1] && map->map[pos] != '\n')
+			{
+				write(2, "map error\n", 10);
+				return ;
+			}
 			pos++;
+		}
 		check(map, pos);
 		pos++;
 	}
@@ -140,7 +147,7 @@ int		main(int argc, char **argv)
 		{
 			start = clock();
 			build_map(argv[i]);
-			//print_time("bsq", start, clock());
+			print_time("bsq", start, clock());
 			i++;
 		}
 	}
