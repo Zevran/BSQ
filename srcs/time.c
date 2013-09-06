@@ -19,7 +19,7 @@
 */
 void	print_time(char *function, clock_t start, clock_t end)
 {
-	printf("Timer : ");
+	printf("Timer ");
 	printf("[%s]", function);
 	printf(" : %f\n", (end - start) / (float)CLOCKS_PER_SEC);
 }

@@ -30,25 +30,23 @@ void	build_map(char *file)
 
 	map.sq_pos = 0;
 	map.sq_size = 0;
-	if (!ft_get_file(&map, file) && !ft_file_to_array(&map, file))
+	if (ft_get_file_size(&map, file) < 0 || ft_file_to_array(&map, file) < 0)
 	{
-		map_error();
+		write(2, "map error\n", 10);
 		return ;
 	}
 	//ft_impl_map(&map);
 	bsq(&map);
-	free(map.map);
+	//free(map.map);
 }
 
 int		check_char_integrity(t_map *map, int pos)
 {
 	while (map->map[pos] != map->cset[0] && pos < map->stats[2])
 	{
-		if (map->map[pos] == map->cset[0] 
-			|| map->map[pos] == map->cset[1] || map->map[pos] == '\n')
-			pos++;
-		else
+		if (map->map[pos] != map->cset[1] && map->map[pos] != '\n')
 			return (-1);
+		pos++;
 	}
 	return (pos);
 }
@@ -80,9 +78,9 @@ void	bsq(t_map *map)
 	j = 0;
 	while (pos < map->stats[2])
 	{
-		if (check_char_integrity(map, pos) == -1)
+		if (check_char_integrity(map, pos) < 0)
 		{
-			map_error();
+			write(2, "map error\n", 10);
 			return ;
 		}
 		check(map, pos);
@@ -96,7 +94,7 @@ void	bsq(t_map *map)
 int		main(int argc, char **argv)
 {
 	int	i;
-	clock_t	start, end;
+	clock_t	start;
 
 	i = 1;
 	if (argc == 1)
@@ -106,8 +104,7 @@ int		main(int argc, char **argv)
 		{
 			start = clock();
 			build_map(argv[i]);
-			end = clock();
-			print_time("bsq", start, end);
+			print_time("bsq", start, clock());
 			i++;
 		}
 	return (0);
