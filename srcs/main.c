@@ -20,7 +20,6 @@
 void	print_time(char *function, clock_t start, clock_t end);
 
 void	build_map(char *file);
-int		check_char_integrity(t_map *map, int pos);
 void	draw_square(t_map *map);
 void	bsq(t_map *map);
 
@@ -37,26 +36,6 @@ void	build_map(char *file)
 	}
 	bsq(&map);
 	//free(map.map);
-}
-
-int		check_char_integrity(t_map *map, int pos)
-{
-	/*while (map->map[pos] != map->cset[0] && pos < map->stats[2])
-	{
-		if (map->map[pos] != map->cset[0] 
-				&& map->map[pos] != map->cset[1] && map->map[pos] != '\n')
-			return (-1);
-		pos++;
-	}*/
-	while (map->map[pos] != map->cset[0] && pos < map->stats[2])
-	{
-		if (map->map[pos] == map->cset[0] 
-			|| map->map[pos] == map->cset[1] || map->map[pos] == '\n')
-			pos++;
-		else
-			return (-1);
-	}
-	return (pos);
 }
 
 void	draw_square(t_map *map)
@@ -95,7 +74,8 @@ void	bsq(t_map *map)
 	{
 		while (map->map[pos] != map->cset[0] && pos < map->stats[2])
 		{
-			if (map->map[pos] != map->cset[0] && map->map[pos] != map->cset[1] && map->map[pos] != '\n')
+			if (map->map[pos] != map->cset[0] && map->map[pos] != map->cset[1] 
+				&& map->map[pos] != '\n')
 			{
 				write(2, "map error\n", 10);
 				return ;
@@ -108,30 +88,6 @@ void	bsq(t_map *map)
 	draw_square(map);
 	write(1, map->map, map->stats[2]);
 }
-
-/*void	bsq(t_map *map)
-{
-	int		pos;
-	int		i;
-	int		j;
-
-	pos = 0;
-	i = 0;
-	j = 0;
-	while (pos < map->stats[2])
-	{
-		if (check_char_integrity(map, pos) < 0)
-		{
-			write(2, "map error\n", 10);
-			return ;
-		}
-		check(map, pos);
-		pos++;
-	}
-	pos = map->sq_pos;
-	draw_square(map, i, j, pos);
-	write(1, map->map, map->stats[2]);
-}*/
 
 int		main(int argc, char **argv)
 {
