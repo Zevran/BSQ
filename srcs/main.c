@@ -30,12 +30,9 @@ void	build_map(char *file)
 
 	map.sq_pos = 0;
 	map.sq_size = 0;
-	if (!ft_get_file(&map, file) && !ft_file_to_array(&map, file))
-	{
-		map_error();
-		return ;
-	}
-	//ft_impl_map(&map);
+	ft_get_file(&map, file);
+	ft_file_to_array(&map, file);
+	ft_impl_map(&map);
 	bsq(&map);
 	free(map.map);
 }
