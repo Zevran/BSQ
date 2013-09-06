@@ -12,10 +12,15 @@
 
 #include "includes/map.h"
 #include "includes/tools.h"
-#include <stdio.h>
+
 void	m_putchar(char c)
 {
 	write(1, &c, 1);
+}
+
+void	map_error(void)
+{
+	write(1, "map error\n", 10);
 }
 
 void	m_putstr(char *str)
@@ -24,22 +29,34 @@ void	m_putstr(char *str)
 		write(1, str++, 1);
 }
 
+void	m_putnbr(int n)
+{
+	if (n >= 10)
+	{
+		m_putnbr(n / 10);
+		m_putnbr(n % 10);
+	}
+	else
+		m_putchar(48 + n);
+}
+
 int		m_atoi(char *str, int n)
 {
 	int		res;
 	int		i;
 
-	i = 0;
+	i = 1;
 	res = 0;
+	str++;
 	while (*str && i < n) 
 	{
 		if (*str < '0' || *str > '9')
 			return (-101);
-		res += res * 10 + (*str) - '0';
+		res *= 10 + (*str) - '0';
 		str++;
 		i++;
 	}
-	return (res);
+	return (i);
 }
 
 void	m_reallocstr(char *str, int old_size, int new_size)
