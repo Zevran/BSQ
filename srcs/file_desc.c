@@ -27,86 +27,48 @@ void	ft_stdout()
 
 int		read_head(int fd, t_map *map)
 {
+	char	buff;
 	char	*temp;
-	
-	if (map->stats[3] < 4)
-		return (-1);
-	temp = (char *) malloc(sizeof(map->stats[3]));
-	if (read(fd, temp, map->stats[3]) < 0)
-		return (-2);
-	map->cset[2] = temp[map->stats[3]--];
-	map->cset[1] = temp[map->stats[3]--];
-	map->cset[0] = temp[map->stats[3]--];
-	map->stats[1] = m_atoi(temp, map->stats[3]);
-	if (map->stats[0] < 1)
-		return (-3);
-	read(fd, temp, 1);
-	return (1);
-}
-
-int		ft_get_file(t_map *map, char *file)
-{
 	int		i;
-	int		fd;
-	char	err;
-	char	buff_1;
-	char	*buff;
 
-	i = 0;
-	fd = open(file, O_RDONLY | O_RDWR);
-	if (fd < 0)
-		return (0);
-	map->stats[3] = 0;
-	while ((err = read(file, &buff_1, 1) > 0) && buff_1 != '\n')
-		map->stats[3]++;
-	if (err <= 0 || !read_head(file, map))
-		return (0);
-	map->stats[0] = 0;
-	while ((err = read(file, &buff_1, 1)) > 0)
-		map->stats[0]++;
-	if (err < 0)
-		return (0);
-	buff = (char*)malloc(sizeof(char) * map->stats[0]);
-	if (buff == NULL)
-		return (0);
-	while ((err = read(file, buff, map->stats[0])) > 0)
+	i = 1;
+	temp = (char *) malloc(sizeof(map->stats[3]));
+	while (read(fd, &buff, 1) && buff != '\n')
 	{
-		if (buff[map->stats[0] - 1] != '\n')
-			return (0);
+		temp[i] = buff;
 		i++;
 	}
-	if (err < 0 || i != map->stats[1])
-		return (0);
+	i--;
+	if (i < 3)
+		return (-2);
+	map->cset[2] = temp[i--];
+	map->cset[1] = temp[i--];
+	map->cset[0] = temp[i--];
+	map->stats[0] = m_atoi(temp, i);
+	if (map->stats[0] < 1)
+		return (-3);
 	return (1);
 }
 
-/*int		ft_get_file(t_map *map, char *file)
+void	ft_get_file(t_map *map, char *file)
 {
 	int		i;
 	int		skip;
 	int		fd;
-	char	err;
 	char	buff;
 
 	i = 0;
 	skip = 0;
 	fd = open(file, O_RDONLY | O_RDWR);
-	if (fd < 0)
-		return (0);
-	while ((err = read(fd, &buff, 1)) > 0 && buff != '\n')
-	{
+	if (fd == -1)
+		exit(EXIT_FAILURE);
+	while (read(fd, &buff, 1) && buff != '\n')
 		map->stats[3] = skip++;
-	}
-	if (err < 0)
-		return (0);
-	while ((err = read(fd, &buff, 1) > 0)
-	{
+	while (read(fd, &buff, 1))
 		map->stats[2] = i++;
-	}
-	if (close(fd) < 0 || err < 0)
-		return (0);
-	return (1);
-}*/
+	if (close(fd) == -1)
+		exit(EXIT_FAILURE);
+}
 
 void	ft_file_to_array(t_map *map, char *file)
 {
@@ -116,9 +78,9 @@ void	ft_file_to_array(t_map *map, char *file)
 	skip = 0;
 	fd = open(file, O_RDONLY);
 	map->map = (char *) malloc(sizeof(char) * map->stats[2]);
-	if (read_head(fd, map) > 0)
+	if (read_head(fd, map) == 1)
 		read(fd, map->map, map->stats[2]);
 	else
-		write(2, "map error\n", 10);
+		write(1, "error", 5);
 }
 
