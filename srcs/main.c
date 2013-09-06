@@ -35,6 +35,7 @@ void	build_map(char *file)
 	ft_file_to_array(&map, file);
 	ft_impl_map(&map);
 	bsq(&map);
+	free(map.map);
 }
 
 void	bsq(t_map *map)

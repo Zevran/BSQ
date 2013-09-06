@@ -25,25 +25,21 @@ void	ft_stdout()
 	}
 }
 
-int		read_head(int *fd, t_map *map)
+int		read_head(int fd, t_map *map)
 {
 	char	buff;
 	char	*temp;
-	char	err;
 	int		i;
 
 	i = 1;
-	if (*fd < 1)
-		return (-1);
-	temp = (char *) malloc(sizeof(char));
-	while ((err = read(*fd, &buff, 1)) > 0 && buff != '\n')
+	temp = (char *) malloc(sizeof(map->stats[3]));
+	while (read(fd, &buff, 1) && buff != '\n')
 	{
-		m_reallocstr(temp, i, i + 1);
 		temp[i] = buff;
 		i++;
 	}
 	i--;
-	if (i < 3 || err < 0)
+	if (i < 3)
 		return (-2);
 	map->cset[2] = temp[i--];
 	map->cset[1] = temp[i--];
@@ -66,13 +62,10 @@ void	ft_get_file(t_map *map, char *file)
 	fd = open(file, O_RDONLY | O_RDWR);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
+	while (read(fd, &buff, 1) && buff != '\n')
+		map->stats[3] = skip++;
 	while (read(fd, &buff, 1))
-	{
-		if ((!skip) && buff == '\n')
-			skip = 1;
-		else if (skip)
-			map->stats[2] = i++;
-	}
+		map->stats[2] = i++;
 	if (close(fd) == -1)
 		exit(EXIT_FAILURE);
 }
@@ -81,13 +74,13 @@ void	ft_file_to_array(t_map *map, char *file)
 {
 	int		fd;
 	int		skip;
-	char	buff;
 
 	skip = 0;
 	fd = open(file, O_RDONLY);
 	map->map = (char *) malloc(sizeof(char) * map->stats[2]);
-	while (read(fd, &buff, 1) && buff != '\n')
-		skip++;
-	read(fd, map->map, map->stats[2]);
+	if (read_head(fd, map) == 1)
+		read(fd, map->map, map->stats[2]);
+	else
+		write(1, "error", 5);
 }
 

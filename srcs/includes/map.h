@@ -18,7 +18,7 @@ typedef struct 	s_map
 {
 	char	*map;
 	char	cset[3];
-	int		stats[3];
+	int		stats[4];
 	int		sq_pos;
 	int		sq_size;
 }				t_map;

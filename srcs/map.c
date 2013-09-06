@@ -21,7 +21,7 @@ void	ft_impl_map(t_map *map)
 	int	i;
 
 	lines = 0;
-	columns = 1;
+	columns = 0;
 	mark = 0;
 	i = 0;
 	while (map->map[i] != '\0')
