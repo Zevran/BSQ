@@ -82,15 +82,12 @@ void	ft_file_to_array(t_map *map, char *file)
 	int		fd;
 	int		skip;
 	char	buff;
-	char	*tab;
 
 	skip = 0;
 	fd = open(file, O_RDONLY);
 	map->map = (char *) malloc(sizeof(char) * map->stats[2]);
-	tab = (char *) malloc(sizeof(char) * map->stats[2]);
 	while (read(fd, &buff, 1) && buff != '\n')
-		map->stats[0] = skip++;
-	while (read(fd, tab, map->stats[2]))
-		map->map = tab;
+		skip++;
+	read(fd, map->map, map->stats[2]);
 }
 

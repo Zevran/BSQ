@@ -16,16 +16,25 @@
 void	ft_impl_map(t_map *map)
 {
 	int	lines;
+	int	columns;
+	int	mark;
 	int	i;
 
 	lines = 0;
+	columns = 1;
+	mark = 0;
 	i = 0;
 	while (map->map[i] != '\0')
-	{
+	{	
+		if (!mark && map->map[i] == '\n')
+			mark = 1;
+		else if (!mark)
+			columns++;
 		if (map->map[i] == '\n')
 			lines++;
 		i++;
 	}
+	map->stats[0] = columns;
 	map->stats[1] = lines;
 }
 
