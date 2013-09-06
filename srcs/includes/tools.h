@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+void	map_error(void);
 void	m_putchar(char c);
 void	m_putstr(char *str);
 void	m_putnbr(int n);
