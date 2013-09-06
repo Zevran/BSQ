@@ -13,9 +13,9 @@
 #include "includes/map.h"
 #include "includes/file_desc.h"
 
-int		check_line(t_map *map, int pos, int size)
+int		check_line(t_map *map, long pos, long size)
 {
-	int		temp;
+	long	temp;
 	
 	temp = pos + (map->stats[0]) * size;
 	size = pos + (map->stats[0]) * size + size;
@@ -29,7 +29,7 @@ int		check_line(t_map *map, int pos, int size)
 	return (1);
 }
 
-int		check_col(t_map *map, int pos, int size)
+int		check_col(t_map *map, long pos, long size)
 {
 	pos += size;
 	size = pos + size + (map->stats[0]) * size;
@@ -42,9 +42,9 @@ int		check_col(t_map *map, int pos, int size)
 	return (1);
 }
 
-void	check(t_map *map, int pos)
+void	check(t_map *map, long pos)
 {
-	int		size;
+	long	size;
 
 	size = 1;
 	while (pos % map->stats[0] + size < map->stats[0]

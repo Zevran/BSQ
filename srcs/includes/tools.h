@@ -15,6 +15,6 @@
 # define TOOLS_H
 # include <unistd.h>
 
-int		m_atoi(char *str, int n);
+long	m_atoi(char *str, long n);
 
 #endif /* !TOOLS_H */

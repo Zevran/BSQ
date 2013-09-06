@@ -16,11 +16,11 @@
 
 int		ft_stdout(char *file_name)
 {
-	int		fd;
-	int		r;
-	int		columns;
-	char	buff;
-	char	*tab;
+	int			fd;
+	long		r;
+	long		columns;
+	char		buff;
+	char		*tab;
 
 	columns = 0;
 	if ((fd = open(file_name, O_RDWR | O_TRUNC | O_CREAT, S_IRUSR | S_IWUSR)) \
@@ -61,7 +61,7 @@ int		read_head(int fd, t_map *map)
 	return (1);
 }
 
-void	set_to_nul(int *a, int *b, int *c)
+void	set_to_nul(long *a, long *b, long *c)
 {
 	*a = 0;
 	*b = 0;

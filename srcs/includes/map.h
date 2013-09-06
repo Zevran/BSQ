@@ -18,13 +18,13 @@ typedef struct 	s_map
 {
 	char	*map;
 	char	cset[3];
-	int		stats[4];
-	int		sq_pos;
-	int		sq_size;
+	long	stats[4];
+	long	sq_pos;
+	long	sq_size;
 }				t_map;
 
-int		check_line(t_map *map, int pos, int size);
-int		check_col(t_map *map, int pos, int size);
-void	check(t_map *map, int pos);
+int		check_line(t_map *map, long pos, long size);
+int		check_col(t_map *map, long pos, long size);
+void	check(t_map *map, long pos);
 
 #endif /* !MAP_H */

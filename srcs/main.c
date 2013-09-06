@@ -35,9 +35,9 @@ void	build_map(char *file)
 
 void	draw_square(t_map *map)
 {
-	int		i;
-	int		j;
-	int		pos;
+	long	i;
+	long	j;
+	long	pos;
 
 	i = 0;
 	j = 0;
@@ -58,9 +58,9 @@ void	draw_square(t_map *map)
 
 void	bsq(t_map *map)
 {
-	int		pos;
-	int		i;
-	int		j;
+	long	pos;
+	long	i;
+	long	j;
 
 	pos = 0;
 	i = 0;
@@ -86,8 +86,8 @@ void	bsq(t_map *map)
 
 int		main(int argc, char **argv)
 {
-	int	i;
-	char file_name[] = "temp_map";
+	long	i;
+	char 	file_name[] = "temp_map";
 
 	i = 1;
 	if (argc == 1)

@@ -14,11 +14,10 @@ NAME = bsq
 HEADER = includes
 SOURCES = srcs/
 ATTRIBUTES = -Wall -Werror -Wextra
-DEBUG = -O3 -ggdb
 RM_DIR = /bin/rm
 
 all:
-	@gcc $(ATTRIBUTES) -I $(HEADER) -o $(NAME) $(SOURCES)main.c \
+	@gcc $(ATTRIBUTES) -O3 -I $(HEADER) -o $(NAME) $(SOURCES)main.c \
 	$(SOURCES)tools.c $(SOURCES)file_desc.c $(SOURCES)map.c
 
 fclean: clean

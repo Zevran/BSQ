@@ -13,10 +13,10 @@
 #include "includes/map.h"
 #include "includes/tools.h"
 
-int		m_atoi(char *str, int n)
+long	m_atoi(char *str, long n)
 {
-	int		res;
-	int		i;
+	long	res;
+	long	i;
 
 	i = 0;
 	res = 0;
