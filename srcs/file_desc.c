@@ -57,19 +57,19 @@ int		ft_get_file(t_map *map, char *file)
 	if (fd < 0)
 		return (0);
 	map->stats[3] = 0;
-	while ((err = read(file, &buff_1, 1) > 0) && buff_1 != '\n')
+	while ((err = read(fd, &buff_1, 1) > 0) && buff_1 != '\n')
 		map->stats[3]++;
-	if (err <= 0 || !read_head(file, map))
+	if (err <= 0 || !read_head(fd, map))
 		return (0);
 	map->stats[0] = 0;
-	while ((err = read(file, &buff_1, 1)) > 0)
+	while ((err = read(fd, &buff_1, 1)) > 0)
 		map->stats[0]++;
 	if (err < 0)
 		return (0);
 	buff = (char*)malloc(sizeof(char) * map->stats[0]);
 	if (buff == NULL)
 		return (0);
-	while ((err = read(file, buff, map->stats[0])) > 0)
+	while ((err = read(fd, buff, map->stats[0])) > 0)
 	{
 		if (buff[map->stats[0] - 1] != '\n')
 			return (0);
@@ -108,7 +108,7 @@ int		ft_get_file(t_map *map, char *file)
 	return (1);
 }*/
 
-void	ft_file_to_array(t_map *map, char *file)
+int		ft_file_to_array(t_map *map, char *file)
 {
 	int		fd;
 	int		skip;
@@ -119,6 +119,7 @@ void	ft_file_to_array(t_map *map, char *file)
 	if (read_head(fd, map) > 0)
 		read(fd, map->map, map->stats[2]);
 	else
-		write(2, "map error\n", 10);
+		return (0);
+	return (1);
 }
 

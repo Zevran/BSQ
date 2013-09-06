@@ -18,7 +18,7 @@
 
 void	ft_stdout(void);
 int		read_head(int fd, t_map *map);
-void	ft_get_file(t_map *map, char *file);
-void	ft_file_to_array(t_map *map, char *file);
+int		ft_get_file(t_map *map, char *file);
+int		ft_file_to_array(t_map *map, char *file);
 
 #endif /* !FILE_DESC_H */
