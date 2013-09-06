@@ -20,15 +20,26 @@ int		ft_stdout(char *file_name)
 {
 	int		fd;
 	int		r;
+	int		columns;
 	char	buff;
+	char	*tab;
 
+	columns = 0;
 	if ((fd = open(file_name, O_RDWR | O_TRUNC | O_CREAT, S_IRUSR | S_IWUSR)) \
 		< 0)
 		return (1);
-	while ((r = read(STDIN_FILENO, &buff, 1)) > 0)
-		write(fd, &buff, r);
-	if (close(fd) < 0)
+	while ((r = read(STDIN_FILENO, &buff, 1)) > 0 && buff != '\n')
+	{
+		write(fd, &buff, 1);
+		columns++;
+	}
+	write(fd, "\n", 1);
+	if (!(tab = (char*)malloc(sizeof(char) * columns)))
 		return (2);
+	while ((r = read(STDIN_FILENO, tab, columns)) > 0)
+		write(fd, tab, columns);
+	if (close(fd) < 0)
+		return (3);
 	return (0);
 }
 
@@ -38,7 +49,6 @@ int		read_head(int fd, t_map *map)
 	if (map->stats[3] < 4)
 		return (-1);
 	temp = (char *) malloc(sizeof(map->stats[3]));
-	//printf("%d\n", map->stats[3]);
 	if (read(fd, temp, map->stats[3]) < 0)
 		return (-2);
 	map->stats[3]--;
@@ -81,13 +91,8 @@ int		ft_get_file_size(t_map *map, char *file)
 		return (-3);
 	if (!(buff = (char*)malloc(sizeof(char) * map->stats[0])))
 		return (-4);
-	while (err > 0)
-	{
-		if ((err = read(fd, buff, map->stats[0])) > 0)
-			map->stats[2] += err;
-		if (err > 0 && err != map->stats[0])
-			err = -1;
-	}
+	while ((err = read(fd, &buff_1, 1)) > 0)
+		map->stats[2]++;
 	map->stats[2] += map->stats[0];
 	if (close(fd) < 0 || err < 0)
 		return (-5);
@@ -107,6 +112,3 @@ int		ft_file_to_array(t_map *map, char *file)
 	return (1);
 }
 
-/*if (buff[map->stats[0] - 1] != '\n')
-	return (0);
-i++;*/
